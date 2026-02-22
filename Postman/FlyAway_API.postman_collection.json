@@ -1,0 +1,56 @@
+{
+  "info": {
+    "_postman_id": "bf78833c-0b4a-42dd-8da0-d992860c2584",
+    "name": "FlyAway_API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49558736",
+    "_collection_link": "https://go.postman.co/collection/49558736-bf78833c-0b4a-42dd-8da0-d992860c2584?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get Flights",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Page contains flights\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"Flight\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/flyaway/bookflight.jsp?date=2026-02-22",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "flyaway",
+            "bookflight.jsp"
+          ],
+          "query": [
+            {
+              "key": "date",
+              "value": "2026-02-22"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
