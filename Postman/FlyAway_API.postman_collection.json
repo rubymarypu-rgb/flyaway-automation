@@ -14,12 +14,13 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
+              "pm.test(\"Status 200\", function () {\r",
               "    pm.response.to.have.status(200);\r",
               "});\r",
               "\r",
-              "pm.test(\"Page contains flights\", function () {\r",
-              "    pm.expect(pm.response.text()).to.include(\"Flight\");\r",
+              "pm.test(\"Flights returned\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.length).to.be.above(0);\r",
               "});"
             ],
             "type": "text/javascript",
@@ -32,7 +33,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8081/flyaway/bookflight.jsp?date=2026-02-22",
+          "raw": "http://localhost:8081/flyaway/api/flights?date=2026-02-22",
           "protocol": "http",
           "host": [
             "localhost"
@@ -40,12 +41,60 @@
           "port": "8081",
           "path": [
             "flyaway",
-            "bookflight.jsp"
+            "api",
+            "flights"
           ],
           "query": [
             {
               "key": "date",
               "value": "2026-02-22"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Booked Seats",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Booked seats exist\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.bookedSeats).to.be.above(0);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/flyaway/api/bookedSeats?flightNo=F101",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "flyaway",
+            "api",
+            "bookedSeats"
+          ],
+          "query": [
+            {
+              "key": "flightNo",
+              "value": "F101"
             }
           ]
         }
