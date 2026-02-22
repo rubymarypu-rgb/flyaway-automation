@@ -26,10 +26,10 @@ public class PaymentPage {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("paybtn")))
                 .click();
 
-        wait.until(ExpectedConditions.urlContains("confirmpayment"));
+        wait.until(ExpectedConditions.urlContains("confirmbooking"));
     }
 
     public boolean isPaymentSuccessful() {
-        return driver.getCurrentUrl().contains("confirmpayment");
+        return driver.getCurrentUrl().contains("confirmbooking");
     }
 }

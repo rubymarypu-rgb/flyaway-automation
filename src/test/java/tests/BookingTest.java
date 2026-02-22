@@ -19,7 +19,7 @@ public class BookingTest {
     @BeforeMethod
     public void openHomePage() throws InterruptedException {
         driver.get("http://localhost:8081/flyaway");
-        Thread.sleep(2000); // wait 2 seconds for page to load
+        //Thread.sleep(2000); // wait 2 seconds for page to load
     }
 
     @Test
